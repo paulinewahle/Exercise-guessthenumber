@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Lab1 </title>
+</head>
+
+<body>
+    <h1> Guess a number between 1 and 80 </h1>
+    <script> 
+        var games = 0;
+        var rounds = 0;
+        var totalRounds = 0;
+        var roundMsg = "Do you want to play a game of Guess The Number?";
+        var gameMsg = "Guess a number between 1 and 80";
+        var currentGuess, correctAnswer, avarageGuess, listOfGuesses;
+        gameLoop: 
+        confirm (roundMsg);
+        if (roundMsg == true) {
+            games++;
+            rounds = 0;
+            gameMsg ="Guess a number between 1 anf 80";
+            correctAnswer = Math.floor (Math.random()*80) + 1;
+            console.log("The secret number is " + correctAnswer);
+            listOfGuesses = "";
+            turnLoop:
+            while (rounds < 10) {
+                rounds++;
+                currentGuess = prompt(gameMsg);
+                listOfGuesses += currentGuess + " ";
+
+                if (currentGuess == null) {
+                    break;
+                } else if (currentGuess < correctAnswer) {
+                    gameMsg = "Sorry but that was too low. ";
+                } else if (currentGuess > correctAnswer) {
+                    gameMsg = "Sorry but that was too high. ";
+                } else {
+                    gameMsg = "Perfect! you made it in " + rounds + " guesses. ";
+                    break turnLoop;
+                }
+
+                if (rounds == 10) {
+                    gameMsg += "And now you are out of guesses. <br> The secret number was " + correctAnswer;
+                    break turnLoop;
+                }
+                gameMsg += "\nYour guesses so far: " + listOfGuesses;
+            } //end of turnLoop
+            document.write(gameMsg + "<br> thank you for playing!")
+        } //end of gameLoop
+        
+    </script>
+</body>
+
+</html>
